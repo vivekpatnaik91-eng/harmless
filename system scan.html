@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>System Scan</title>
+<style>
+body {
+  background: black;
+  color: lime;
+  font-family: monospace;
+  padding: 20px;
+}
+#box {
+  border: 1px solid lime;
+  padding: 15px;
+  max-width: 600px;
+}
+.bar {
+  width: 100%;
+  background: #222;
+}
+.progress {
+  width: 0%;
+  height: 20px;
+  background: lime;
+}
+</style>
+</head>
+<body>
+
+<div id="box">
+<h2>Running System Scan...</h2>
+<p>Checking files...</p>
+
+<div class="bar">
+  <div class="progress" id="progress"></div>
+</div>
+
+<p id="status">Starting...</p>
+</div>
+
+<script>
+let p = 0;
+let messages = [
+"Scanning system files...",
+"Checking browser history...",
+"Analyzing memes folder...",
+"Detecting viruses...",
+"Almost done..."
+];
+
+let i = 0;
+
+let interval = setInterval(() => {
+  p += 10;
+  document.getElementById("progress").style.width = p + "%";
+
+  if (i < messages.length) {
+    document.getElementById("status").innerText = messages[i];
+    i++;
+  }
+
+  if (p >= 100) {
+    clearInterval(interval);
+    document.body.innerHTML = `
+      <h1 style="color: red;">⚠️ ALERT ⚠️</h1>
+      <h2>Just kidding 😂</h2>
+      <p>No viruses found. You're safe.</p>
+      <p>But you are 100% fooled 😎</p>
+    `;
+  }
+}, 500);
+</script>
+
+</body>
+</html>
